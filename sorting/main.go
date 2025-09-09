@@ -42,6 +42,30 @@ func main() {
 			{Input: []int{}, Expected: []int{}},
 		},
 	})
+	// MergeSort tests
+	t.Add(&tester.Test[[]int, []int]{
+		Name:     "MergeSort",
+		TestFunc: MergeSortWrapper,
+		Cases: []tester.TestCase[[]int, []int]{
+			{Input: []int{3, 2, 5, 7, 1}, Expected: []int{1, 2, 3, 5, 7}},
+			{Input: []int{5, 4, 3, 2, 1}, Expected: []int{1, 2, 3, 4, 5}},
+			{Input: []int{1, 2, 3, 4, 5}, Expected: []int{1, 2, 3, 4, 5}},
+			{Input: []int{2, 2, 2}, Expected: []int{2, 2, 2}},
+			{Input: []int{}, Expected: []int{}},
+		},
+	})
+	// QuickSort tests
+	t.Add(&tester.Test[[]int, []int]{
+		Name:     "QuickSort",
+		TestFunc: QuickSortWrapper,
+		Cases: []tester.TestCase[[]int, []int]{
+			{Input: []int{3, 2, 5, 7, 1}, Expected: []int{1, 2, 3, 5, 7}},
+			{Input: []int{5, 4, 3, 2, 1}, Expected: []int{1, 2, 3, 4, 5}},
+			{Input: []int{1, 2, 3, 4, 5}, Expected: []int{1, 2, 3, 4, 5}},
+			{Input: []int{2, 2, 2}, Expected: []int{2, 2, 2}},
+			{Input: []int{}, Expected: []int{}},
+		},
+	})
 
 	t.Run()
 }
@@ -64,5 +88,17 @@ func InsertionSortWrapper(input []int) []int {
 	copied := make([]int, len(input))
 	copy(copied, input)
 	InsertionSort(copied)
+	return copied
+}
+func MergeSortWrapper(input []int) []int {
+	copied := make([]int, len(input))
+	copy(copied, input)
+	MergeSort(copied, 0, len(copied)-1)
+	return copied
+}
+func QuickSortWrapper(input []int) []int {
+	copied := make([]int, len(input))
+	copy(copied, input)
+	QuickSort(copied, 0, len(copied)-1)
 	return copied
 }

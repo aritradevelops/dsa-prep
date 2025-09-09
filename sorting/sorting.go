@@ -22,7 +22,7 @@ func SelectionSort(arr []int) {
 
 // Intuition: Continuously swap lower elements with higher elements
 // Time Complexity: O(n^2), Best Case: O(n)
-// In place sorting algorighm
+// In place sorting algorithm
 func BubbleSort(arr []int) {
 	n := len(arr)
 	// we need 1 less iteration as if we have sorted n-1
@@ -58,4 +58,71 @@ func InsertionSort(arr []int) {
 			j--
 		}
 	}
+}
+
+func MergeSort(arr []int, low int, high int) {
+	if low >= high {
+		return
+	}
+	mid := int((high-low)/2) + low
+	MergeSort(arr, low, mid)
+	MergeSort(arr, mid+1, high)
+	merge(arr, low, mid, high)
+}
+func merge(arr []int, low int, mid int, high int) {
+	temp := []int{}
+	i, j := low, mid+1
+	for i <= mid && j <= high {
+		if arr[i] < arr[j] {
+			temp = append(temp, arr[i])
+			i++
+		} else {
+			temp = append(temp, arr[j])
+			j++
+		}
+	}
+	for i <= mid {
+		temp = append(temp, arr[i])
+		i++
+	}
+	for j <= high {
+		temp = append(temp, arr[j])
+		j++
+	}
+
+	for k := low; k <= high; k++ {
+		arr[k] = temp[k-low]
+	}
+}
+
+func QuickSort(arr []int, low int, high int) {
+	if low >= high {
+		return
+	}
+
+	partIdx := partition(arr, low, high)
+	QuickSort(arr, low, partIdx-1)
+	QuickSort(arr, partIdx+1, high)
+}
+func partition(arr []int, low int, high int) int {
+	pivot := arr[low]
+	i := low
+	j := high
+
+	for i < j {
+		// find larger elements on the right
+		for i < high && arr[i] <= pivot {
+			i++
+		}
+		// find smaller elements on the left
+		for j > low && arr[j] > pivot {
+			j--
+		}
+		if i < j {
+			arr[i], arr[j] = arr[j], arr[i]
+		}
+	}
+	// swap the last element with the pivot
+	arr[low], arr[j] = arr[j], arr[low]
+	return j
 }
