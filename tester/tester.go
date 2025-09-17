@@ -46,9 +46,10 @@ func (t *Test[I, O]) Run(ch chan<- Result, wg *sync.WaitGroup) {
 				if r := recover(); r != nil {
 					elapsed = time.Since(start)
 					messages = append(messages, fmt.Sprintf(
-						"Test %d: | Expected: %v | Got: <panic> | Panic ⚠️ (%v) | Took: %.2fs",
-						i, c.Expected, r, elapsed.Seconds(),
+						"Test %d: | Expected: %v | Got: <panic> | Panic ⚠️ (%v) | Took: %s",
+						i, c.Expected, r, elapsed,
 					))
+
 				}
 			}()
 
@@ -62,9 +63,10 @@ func (t *Test[I, O]) Run(ch chan<- Result, wg *sync.WaitGroup) {
 			}
 
 			messages = append(messages, fmt.Sprintf(
-				"Test %d: | Expected: %v | Got: %v | %s | Took: %.2fs",
-				i, c.Expected, result, status, elapsed.Seconds(),
+				"Test %d: | Expected: %v | Got: %v | %s | Took: %s",
+				i, c.Expected, result, status, elapsed,
 			))
+
 		}()
 
 		totalTime += elapsed
@@ -120,8 +122,10 @@ func printResult(r Result) {
 	}
 
 	fmt.Println(strings.Repeat("-", 60))
-	fmt.Printf("Summary | Total: %d | Passed: %d | Failed: %d | Time: %.2fs\n",
-		r.Total, r.Passed, r.Total-r.Passed, r.Time.Seconds())
+	fmt.Printf("Summary | Total: %d | Passed: %d | Failed: %d | Time: %s\n",
+		r.Total, r.Passed, r.Total-r.Passed, r.Time,
+	)
+
 	fmt.Println(strings.Repeat("=", 60))
 	fmt.Println()
 }
