@@ -67,7 +67,7 @@ func LongestSubArrayWithSumKBetter(nums []int, k int) int {
 			// then it is the longest
 			longest = i + 1
 		} else if val, ok := prefixMap[(prefixSum - k)]; ok {
-			length := i - val + 1
+			length := i - val
 			if length > longest {
 				longest = length
 			}
