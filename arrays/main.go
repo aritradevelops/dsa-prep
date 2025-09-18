@@ -287,6 +287,127 @@ func main() {
 		TestFunc: TwoSumOptimalWrapper,
 	})
 
+	// Test cases for SortColorsBrute
+	t.Add(&tester.Test[[]int, []int]{
+		Name: "SortColorsBrute",
+		Cases: []tester.TestCase[[]int, []int]{
+			{Input: []int{}, Expected: []int{}},
+			{Input: []int{2, 0, 2, 1, 1, 0}, Expected: []int{0, 0, 1, 1, 2, 2}},
+			{Input: []int{2, 0, 1}, Expected: []int{0, 1, 2}},
+			{Input: []int{0, 0, 0}, Expected: []int{0, 0, 0}},
+			{Input: []int{2, 2, 2}, Expected: []int{2, 2, 2}},
+			{Input: []int{1, 1, 1}, Expected: []int{1, 1, 1}},
+			{Input: []int{0, 2, 1, 2, 0, 1, 2, 0}, Expected: []int{0, 0, 0, 1, 1, 2, 2, 2}},
+		},
+		TestFunc: SortColorsBruteWrapper,
+	})
+
+	// Test cases for SortColorsBetter
+	t.Add(&tester.Test[[]int, []int]{
+		Name: "SortColorsBetter",
+		Cases: []tester.TestCase[[]int, []int]{
+			{Input: []int{}, Expected: []int{}},
+			{Input: []int{2, 0, 2, 1, 1, 0}, Expected: []int{0, 0, 1, 1, 2, 2}},
+			{Input: []int{2, 0, 1}, Expected: []int{0, 1, 2}},
+			{Input: []int{0, 0, 0}, Expected: []int{0, 0, 0}},
+			{Input: []int{2, 2, 2}, Expected: []int{2, 2, 2}},
+			{Input: []int{1, 1, 1}, Expected: []int{1, 1, 1}},
+			{Input: []int{0, 2, 1, 2, 0, 1, 2, 0}, Expected: []int{0, 0, 0, 1, 1, 2, 2, 2}},
+		},
+		TestFunc: SortColorsBetterWrapper,
+	})
+
+	// Test cases for SortColorsOptimal
+	t.Add(&tester.Test[[]int, []int]{
+		Name: "SortColorsOptimal",
+		Cases: []tester.TestCase[[]int, []int]{
+			{Input: []int{}, Expected: []int{}},
+			{Input: []int{2, 0, 2, 1, 1, 0}, Expected: []int{0, 0, 1, 1, 2, 2}},
+			{Input: []int{2, 0, 1}, Expected: []int{0, 1, 2}},
+			{Input: []int{0, 0, 0}, Expected: []int{0, 0, 0}},
+			{Input: []int{2, 2, 2}, Expected: []int{2, 2, 2}},
+			{Input: []int{1, 1, 1}, Expected: []int{1, 1, 1}},
+			{Input: []int{0, 2, 1, 2, 0, 1, 2, 0}, Expected: []int{0, 0, 0, 1, 1, 2, 2, 2}},
+		},
+		TestFunc: SortColorsOptimalWrapper,
+	})
+
+	// Test cases for MaximumSubArraySumBrute
+	t.Add(&tester.Test[[]int, int]{
+		Name: "MaximumSubArraySumBrute",
+		Cases: []tester.TestCase[[]int, int]{
+			{Input: []int{1}, Expected: 1},
+			{Input: []int{-1}, Expected: -1},
+			{Input: []int{1, 2, 3}, Expected: 6},
+			{Input: []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}, Expected: 6},
+			{Input: []int{5, 4, -1, 7, 8}, Expected: 23},
+			{Input: []int{-2, -3, -1}, Expected: -1},
+			{Input: []int{0, 0, 0}, Expected: 0},
+			{Input: []int{100, -100, 50}, Expected: 100},
+			{Input: []int{4, -1, 2, 1}, Expected: 6},
+		},
+		TestFunc: MaximumSubArraySumBrute,
+	})
+
+	// Test cases for MaximumSubArraySumOptimal
+	t.Add(&tester.Test[[]int, int]{
+		Name: "MaximumSubArraySumOptimal",
+		Cases: []tester.TestCase[[]int, int]{
+			{Input: []int{1}, Expected: 1},
+			{Input: []int{-1}, Expected: -1},
+			{Input: []int{1, 2, 3}, Expected: 6},
+			{Input: []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}, Expected: 6},
+			{Input: []int{5, 4, -1, 7, 8}, Expected: 23},
+			{Input: []int{-2, -3, -1}, Expected: -1},
+			{Input: []int{0, 0, 0}, Expected: 0},
+			{Input: []int{100, -100, 50}, Expected: 100},
+			{Input: []int{4, -1, 2, 1}, Expected: 6},
+		},
+		TestFunc: MaximumSubArraySumOptimal,
+	})
+
+	// Test cases for MajorityElementBrute
+	t.Add(&tester.Test[[]int, int]{
+		Name: "MajorityElementBrute",
+		Cases: []tester.TestCase[[]int, int]{
+			{Input: []int{3}, Expected: 3},
+			{Input: []int{3, 3, 4}, Expected: 3},
+			{Input: []int{2, 2, 1, 1, 1, 2, 2}, Expected: 2},
+			{Input: []int{1, 1, 1, 2, 2}, Expected: 1},
+			{Input: []int{6, 5, 5, 5, 6, 5, 5}, Expected: 5},
+			{Input: []int{9, 9, 9, 9, 8, 8}, Expected: 9},
+		},
+		TestFunc: MajorityElementBrute,
+	})
+
+	// Test cases for MajorityElementBetter
+	t.Add(&tester.Test[[]int, int]{
+		Name: "MajorityElementBetter",
+		Cases: []tester.TestCase[[]int, int]{
+			{Input: []int{3}, Expected: 3},
+			{Input: []int{3, 3, 4}, Expected: 3},
+			{Input: []int{2, 2, 1, 1, 1, 2, 2}, Expected: 2},
+			{Input: []int{1, 1, 1, 2, 2}, Expected: 1},
+			{Input: []int{6, 5, 5, 5, 6, 5, 5}, Expected: 5},
+			{Input: []int{9, 9, 9, 9, 8, 8}, Expected: 9},
+		},
+		TestFunc: MajorityElementBetter,
+	})
+
+	// Test cases for MajorityElementOptimal
+	t.Add(&tester.Test[[]int, int]{
+		Name: "MajorityElementOptimal",
+		Cases: []tester.TestCase[[]int, int]{
+			{Input: []int{3}, Expected: 3},
+			{Input: []int{3, 3, 4}, Expected: 3},
+			{Input: []int{2, 2, 1, 1, 1, 2, 2}, Expected: 2},
+			{Input: []int{1, 1, 1, 2, 2}, Expected: 1},
+			{Input: []int{6, 5, 5, 5, 6, 5, 5}, Expected: 5},
+			{Input: []int{9, 9, 9, 9, 8, 8}, Expected: 9},
+		},
+		TestFunc: MajorityElementOptimal,
+	})
+
 	// Run all tests
 	t.Run()
 }
@@ -331,4 +452,25 @@ func TwoSumBetterWrapper(a Anom) []int {
 
 func TwoSumOptimalWrapper(a Anom) bool {
 	return TwoSumOptimal(a.arr, a.k)
+}
+
+func SortColorsBruteWrapper(colors []int) []int {
+	copied := make([]int, len(colors))
+	copy(copied, colors)
+	SortColorsBrute(copied)
+	return copied
+}
+
+func SortColorsBetterWrapper(colors []int) []int {
+	copied := make([]int, len(colors))
+	copy(copied, colors)
+	SortColorsBetter(copied)
+	return copied
+}
+
+func SortColorsOptimalWrapper(colors []int) []int {
+	copied := make([]int, len(colors))
+	copy(copied, colors)
+	SortColorsOptimal(copied)
+	return copied
 }
