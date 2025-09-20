@@ -46,7 +46,7 @@ func (t *Test[I, O]) Run(ch chan<- Result, wg *sync.WaitGroup) {
 				if r := recover(); r != nil {
 					elapsed = time.Since(start)
 					messages = append(messages, fmt.Sprintf(
-						"Test %d: | Expected: %v | Got: <panic> | Panic ⚠️ (%v) | Took: %.2fs",
+						"Test %d: | Expected: %v | Got: <panic> | Panic  ❌ (%v) | Took: %.2fs",
 						i, c.Expected, r, elapsed.Seconds(),
 					))
 				}

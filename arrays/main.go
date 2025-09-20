@@ -1,6 +1,10 @@
 package main
 
-import "github.com/aritradeveops/dsa-prep/tester"
+import (
+	"fmt"
+
+	"github.com/aritradeveops/dsa-prep/tester"
+)
 
 type Anom struct {
 	arr []int
@@ -55,6 +59,46 @@ func main() {
 			},
 		},
 	})
+	t.Add(&tester.Test[[]int, []int]{
+		Name:     "Put all zeros at the end",
+		TestFunc: PutZerosAtTheEndWrapper,
+		Cases: []tester.TestCase[[]int, []int]{
+			// mixed case
+			{Input: []int{1, 2, 0, 0, 1, 0, 2, 3, 0, 0, 0, 5}, Expected: []int{1, 2, 1, 2, 3, 5, 0, 0, 0, 0, 0, 0}},
+			// all zeros
+			{Input: []int{0, 0, 0}, Expected: []int{0, 0, 0}},
+			// no zeros
+			{Input: []int{1, 2, 3}, Expected: []int{1, 2, 3}},
+			// zeros in front
+			{Input: []int{0, 0, 1, 2}, Expected: []int{1, 2, 0, 0}},
+			// single element
+			{Input: []int{0}, Expected: []int{0}},
+			{Input: []int{5}, Expected: []int{5}},
+		},
+	})
+	t.Add(&tester.Test[[]int, []int]{
+		Name:     "Remove Duplicates",
+		TestFunc: RemoveDuplicatesWrapper,
+		Cases: []tester.TestCase[[]int, []int]{
+			// empty
+			// {Input: []int{}, Expected: []int{}},
+			// single element
+			{Input: []int{1}, Expected: []int{1}},
+			// no duplicates
+			{Input: []int{1, 2, 3}, Expected: []int{1, 2, 3}},
+			// consecutive duplicates
+			{Input: []int{1, 1, 2, 2, 3, 3}, Expected: []int{1, 2, 3}},
+			// all same
+			{Input: []int{5, 5, 5, 5}, Expected: []int{5}},
+		},
+	})
+	// arr := []int{0, 0, 1, 1, 1, 1, 2, 3, 3}
+	// RemoveDuplicatesII(arr)
+	// fmt.Println(arr)
+	arr := []string{"flow", "flower", "flight"}
+	prefix := LongestCommonPrefix(arr)
+	fmt.Println(prefix)
+
 	t.Run()
 }
 func LeftRotateWrapper(arr []int) []int {
@@ -68,4 +112,17 @@ func LeftRotateKWrapper(a Anom) []int {
 	copy(copied, a.arr)
 	RotateArrayLeftByK(copied, a.k)
 	return copied
+}
+
+func PutZerosAtTheEndWrapper(arr []int) []int {
+	copied := make([]int, len(arr))
+	copy(copied, arr)
+	PutZerosAtTheEnd(copied)
+	return copied
+}
+func RemoveDuplicatesWrapper(arr []int) []int {
+	copied := make([]int, len(arr))
+	copy(copied, arr)
+	uniqueElems := RemoveDuplicates(copied)
+	return copied[0:uniqueElems]
 }
