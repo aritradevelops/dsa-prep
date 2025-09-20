@@ -1,5 +1,7 @@
 package main
 
+import "math"
+
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 // You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
 // Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
@@ -24,20 +26,21 @@ func MaxProfitBrute(rates []int) int {
 	return maxProfit
 }
 
-// Intuition: Minimize the buy value from left and maximize the sell value from right while left > right
+// Intuition:
+// 1. Keep track of the minimum buy value
+// 2. staring at ith rate calculate the profit from the minimum buy value
+// 3. maximize the profit
 func MaxProfitOptimal(rates []int) int {
-	buy, sell := rates[0], rates[len(rates)-1]
-	left, right := 0, len(rates)-1
-
-	for left <= right {
-		if buy > rates[left] {
-			buy = rates[left]
-			left++
+	minBuy := math.MaxInt
+	maxProfit := 0
+	for num := range rates {
+		if num < minBuy {
+			minBuy = num
 		}
-		if sell < rates[right] {
-			sell = rates[right]
-			right--
+		profit := num - minBuy
+		if profit > maxProfit {
+			maxProfit = profit
 		}
 	}
-	return sell - buy
+	return maxProfit
 }
