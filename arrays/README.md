@@ -1,18 +1,15 @@
-# DSA Problems
+# Arrays Problems
 
-This repository contains various data structure and algorithm problems, organized by category with individual test cases.
+This directory contains various array-based algorithm problems, each organized in its own folder with individual test cases.
 
 ## Structure
 
-The repository is organized by problem categories:
-- `arrays/` - Array-based algorithm problems
-- Each problem has its own folder containing:
-  - `problem_name.go` - Problem implementation with multiple approaches
-  - `main.go` - Test cases specific to that problem
+Each problem has its own folder containing:
+- `problem_name.go` - Problem implementation with multiple approaches
+- `main.go` - Test cases specific to that problem
 
 ## Available Problems
 
-### Array Problems (`arrays/` directory)
 - `single_number/` - Find the single number in an array
 - `sort_colors/` - Sort an array of colors (Dutch National Flag problem)
 - `rearrange_elements_by_sign/` - Rearrange array with alternating positive/negative elements

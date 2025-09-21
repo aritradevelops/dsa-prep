@@ -49,6 +49,7 @@ func (t *Test[I, O]) Run(ch chan<- Result, wg *sync.WaitGroup) {
 						"Test %d: | Expected: %v | Got: <panic> | Panic  ❌ (%v) | Took: %.2fs",
 						i, c.Expected, r, elapsed.Seconds(),
 					))
+
 				}
 			}()
 
@@ -62,9 +63,10 @@ func (t *Test[I, O]) Run(ch chan<- Result, wg *sync.WaitGroup) {
 			}
 
 			messages = append(messages, fmt.Sprintf(
-				"Test %d: | Expected: %v | Got: %v | %s | Took: %.2fs",
-				i, c.Expected, result, status, elapsed.Seconds(),
+				"Test %d: | Expected: %v | Got: %v | %s | Took: %s",
+				i, c.Expected, result, status, elapsed,
 			))
+
 		}()
 
 		totalTime += elapsed
@@ -105,9 +107,13 @@ func (t *Tester) Run() {
 		close(ch)
 	}()
 
+	var allResults []Result
 	for r := range ch {
 		printResult(r)
+		allResults = append(allResults, r)
 	}
+
+	printOverallSummary(allResults)
 }
 
 func printResult(r Result) {
@@ -120,8 +126,42 @@ func printResult(r Result) {
 	}
 
 	fmt.Println(strings.Repeat("-", 60))
-	fmt.Printf("Summary | Total: %d | Passed: %d | Failed: %d | Time: %.2fs\n",
-		r.Total, r.Passed, r.Total-r.Passed, r.Time.Seconds())
+	fmt.Printf("Summary | Total: %d | Passed: %d | Failed: %d | Time: %s\n",
+		r.Total, r.Passed, r.Total-r.Passed, r.Time,
+	)
+
 	fmt.Println(strings.Repeat("=", 60))
+	fmt.Println()
+}
+
+func printOverallSummary(results []Result) {
+	fmt.Println(strings.Repeat("=", 80))
+	fmt.Println(" OVERALL TEST SUMMARY")
+	fmt.Println(strings.Repeat("=", 80))
+
+	totalTests := 0
+	totalPassed := 0
+	totalFailed := 0
+	var totalTime time.Duration
+
+	for _, r := range results {
+		totalTests += r.Total
+		totalPassed += r.Passed
+		totalFailed += (r.Total - r.Passed)
+		totalTime += r.Time
+
+		status := "✅ PASS"
+		if r.Passed != r.Total {
+			status = "❌ FAIL"
+		}
+
+		fmt.Printf("| %-40s | %-8s | %2d/%2d | %-10s |\n",
+			r.Name, status, r.Passed, r.Total, r.Time)
+	}
+
+	fmt.Println(strings.Repeat("-", 80))
+	fmt.Printf("| %-40s | %-8s | %2d/%2d | %-10s |\n",
+		"TOTAL", "", totalPassed, totalTests, totalTime)
+	fmt.Println(strings.Repeat("=", 80))
 	fmt.Println()
 }

@@ -18,12 +18,15 @@ func RotateArrayLeftByK(arr []int, k int) {
 		k = k % len(arr)
 		if k != 0 {
 			firstElements := append([]int(nil), arr[0:k]...)
+			// fmt.Println(firstElements, len(firstElements))
 			for i := k; i <= len(arr)-1; i++ {
 				arr[i-k] = arr[i]
 			}
+			// fmt.Println("here", arr, firstElements)
 			for j := 0; j < len(firstElements); j++ {
 				arr[len(arr)-k+j] = firstElements[j]
 			}
+			// fmt.Println("here after", arr)
 		}
 	}
 }
