@@ -14,6 +14,7 @@ func main() {
 			{Input: []int{1, 1, 5}, Expected: []int{1, 5, 1}},
 			{Input: []int{1}, Expected: []int{1}},
 			{Input: []int{1, 2}, Expected: []int{2, 1}},
+			{Input: []int{2, 1, 5, 3, 0, 0}, Expected: []int{2, 3, 0, 0, 1, 5}},
 		},
 		TestFunc: NextPermutationOptimalWrapper,
 	})

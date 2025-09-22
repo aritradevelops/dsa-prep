@@ -1,8 +1,6 @@
 package main
 
-import (
-	"slices"
-)
+import "slices"
 
 // A permutation of an array of integers is an arrangement of its members into a sequence or linear order.
 
@@ -26,16 +24,31 @@ import (
 // 1 <= nums.length <= 100
 // 0 <= nums[i] <= 100
 
+// Example: 215300
+// first is have find the dip which is 1
+// then swap it with the just greater number than the found dip, i.e. 3
+// then reverse the from the next
 func NextPermutationOptimal(nums []int) {
-	found := false
-	for i := len(nums) - 2; i >= 0; i-- {
-		if nums[i+1] < nums[i] {
-			nums[i+1], nums[i] = nums[i], nums[i+1]
-			found = true
+	n := len(nums) - 2
+	for n >= 0 {
+		if nums[n] < nums[n+1] {
 			break
 		}
+		n--
 	}
-	if !found {
+	if n == -1 {
+		// means I have not found any dip
+		// so the next permutation it the first one
 		slices.Reverse(nums)
+	} else {
+		// find the just above number of the found one
+		i := len(nums) - 1
+		for ; i > n; i-- {
+			if nums[i] > nums[n] {
+				break
+			}
+		}
+		nums[i], nums[n] = nums[n], nums[i]
+		slices.Reverse(nums[n+1:])
 	}
 }
