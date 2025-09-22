@@ -23,6 +23,9 @@ The repository is organized by problem categories:
 - `best_time_to_buy_and_sell_stock/` - Find maximum profit from stock trading
 - `find_missing_element/` - Find missing number in array
 - `longest_subarray_with_sum_k/` - Find longest subarray with given sum
+- `longest_consecutive_sequence/` - Find length of longest consecutive sequence
+- `replace_elements_with_leaders/` - Replace each element with greatest to its right
+- `set_matrix_zero/` - Set matrix rows and columns to zero if an element is zero
 - `two_sum/` - Find two numbers that add up to target
 - `general_array_problems/` - General array manipulation utilities
 
@@ -64,6 +67,9 @@ make next_permutation
 make best_time_to_buy
 make find_missing_element
 make longest_subarray
+make longest_consecutive_sequence
+make replace_elements_with_leaders
+make set_matrix_zero
 make two_sum
 make general_problems
 ```

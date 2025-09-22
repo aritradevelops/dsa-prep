@@ -22,6 +22,9 @@ help:
 	@echo "  make best_time_to_buy       - Run best time to buy and sell stock problem"
 	@echo "  make find_missing_element   - Run find missing element problem"
 	@echo "  make longest_subarray       - Run longest subarray with sum k problem"
+	@echo "  make longest_consecutive_sequence - Run longest consecutive sequence problem"
+	@echo "  make replace_elements_with_leaders - Run replace elements with leaders problem"
+	@echo "  make set_matrix_zero         - Run set matrix zero problem"
 	@echo "  make two_sum                - Run two sum problem"
 	@echo "  make general_problems       - Run general array problems"
 	@echo ""
@@ -30,7 +33,7 @@ help:
 	@echo "  make validate               - Validate all problems compile"
 
 # Run all problems
-all: single_number sort_colors rearrange_elements majority_element max_consecutive_ones max_subarray_sum next_permutation best_time_to_buy find_missing_element longest_subarray two_sum general_problems
+all: single_number sort_colors rearrange_elements majority_element max_consecutive_ones max_subarray_sum next_permutation best_time_to_buy find_missing_element longest_subarray longest_consecutive_sequence replace_elements_with_leaders set_matrix_zero two_sum general_problems
 
 # Quick test - run a few key problems
 quick: single_number sort_colors two_sum max_subarray_sum
@@ -38,7 +41,7 @@ quick: single_number sort_colors two_sum max_subarray_sum
 # Validate all problems compile
 validate:
 	@echo "Validating all problems compile..."
-	@for dir in arrays/single_number arrays/sort_colors arrays/rearrange_elements_by_sign arrays/majority_element arrays/maximum_consecutive_ones arrays/maximum_subarray_sum arrays/next_permutation arrays/best_time_to_buy_and_sell_stock arrays/find_missing_element arrays/longest_subarray_with_sum_k arrays/two_sum arrays/general_array_problems; do \
+	@for dir in arrays/single_number arrays/sort_colors arrays/rearrange_elements_by_sign arrays/majority_element arrays/maximum_consecutive_ones arrays/maximum_subarray_sum arrays/next_permutation arrays/best_time_to_buy_and_sell_stock arrays/find_missing_element arrays/longest_subarray_with_sum_k arrays/longest_consecutive_sequence arrays/replace_elements_with_leaders arrays/set_matrix_zero arrays/two_sum arrays/general_array_problems; do \
 		echo "Checking $$dir..."; \
 		cd $$dir && go build . && cd ../..; \
 	done
@@ -88,6 +91,18 @@ longest_subarray:
 two_sum:
 	@echo "Running Two Sum problem..."
 	@cd arrays/two_sum && go run .
+
+longest_consecutive_sequence:
+	@echo "Running Longest Consecutive Sequence problem..."
+	@cd arrays/longest_consecutive_sequence && go run .
+
+replace_elements_with_leaders:
+	@echo "Running Replace Elements with Leaders problem..."
+	@cd arrays/replace_elements_with_leaders && go run .
+
+set_matrix_zero:
+	@echo "Running Set Matrix Zero problem..."
+	@cd arrays/set_matrix_zero && go run .
 
 general_problems:
 	@echo "Running General Array Problems..."
